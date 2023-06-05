@@ -87,6 +87,267 @@ The API endpoints are defined using GraphQL and can be accessed through the Grap
 
 Note: Certain mutations and queries may require the user to be authenticated and have the appropriate role (e.g., admin) to access them.
 
+## Examples
+
+### Authentication
+
+**Register**
+
+```graphql
+mutation {
+  register(input: {
+    name: "John Doe",
+    email: "johndoe@example.com",
+    password: "password123"
+  }) {
+    id
+    name
+    email
+  }
+}
+```
+
+**Login**
+
+```graphql
+mutation {
+  login(input: {
+    email: "johndoe@example.com",
+    password: "password123"
+  }) {
+    accessToken
+    refreshToken
+    expiresIn
+  }
+}
+```
+
+**Logout**
+
+```graphql
+mutation {
+  logout
+}
+```
+
+### Products
+
+**Get Products**
+
+```graphql
+query {
+  getProducts {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Create Product**
+
+```graphql
+mutation {
+  createProduct(input: {
+    name: "Product Name",
+    price: 29.99,
+    categoryId: "<category-id>"
+  }) {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Edit Product**
+
+```graphql
+mutation {
+  editProduct(input: {
+    id: "<product-id>",
+    name: "New Product Name",
+    price: 39.99
+  }) {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Delete Product**
+
+```graphql
+mutation {
+  deleteProduct(id: "<product-id>")
+}
+```
+
+**Search Product**
+
+```graphql
+query {
+  searchProduct(keyword: "keyword") {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Filter Products**
+
+```graphql
+query {
+  filterProducts(categoryId: "<category-id>", minPrice: 10, maxPrice: 50) {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Paginate Products**
+
+```graphql
+query {
+  paginateProducts(page: 1, limit: 10) {
+    totalItems
+    totalPages
+    currentPage
+    products {
+      id
+      name
+      price
+      category {
+        id
+        name
+      }
+    }
+  }
+}
+```
+
+### Categories
+
+**Create Category**
+
+```graphql
+mutation {
+  createCategory(name: "Category Name") {
+    id
+    name
+  }
+}
+```
+
+**Edit Category**
+
+```graphql
+mutation {
+  editCategory(id: "<category-id>", name: "New Category Name") {
+    id
+    name
+  }
+}
+```
+
+**Delete Category**
+
+```graphql
+mutation {
+  deleteCategory(id: "<category-id>")
+}
+```
+
+**Get Products by Category**
+
+```graphql
+query {
+  getProductsByCategory(categoryId: "<category-id>") {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+  ### Admin-specific
+
+**Get Inactive Products**
+
+```graphql
+query {
+  getInactiveProducts {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Activate Product**
+
+```graphql
+mutation {
+  activateProduct(id: "<product-id>") {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+**Deactivate Product**
+
+```graphql
+mutation {
+  deactivateProduct(id: "<product-id>") {
+    id
+    name
+    price
+    category {
+      id
+      name
+    }
+  }
+}
+```
+
+
 ## Authentication and Authorization
 
 User authentication is handled using JWT (JSON Web Tokens). When a user successfully logs in, an access token is generated and returned in the response. This access token should be included in the Authorization header for subsequent requests requiring authentication.
