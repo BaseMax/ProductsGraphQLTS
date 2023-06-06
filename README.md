@@ -103,6 +103,8 @@ mutation {
     id
     name
     email
+    created
+    message
   }
 }
 ```
