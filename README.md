@@ -118,17 +118,8 @@ mutation {
     password: "password123"
   }) {
     accessToken
-    refreshToken
-    expiresIn
+    message
   }
-}
-```
-
-**Logout**
-
-```graphql
-mutation {
-  logout
 }
 ```
 
