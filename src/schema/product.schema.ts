@@ -23,6 +23,13 @@ export class Product {
     ref: 'Category',
   })
   categoryId: Types.ObjectId;
+
+  @Prop({
+    type: Number,
+    required: true,
+    default: true,
+  })
+  isactive: boolean;
 }
 
 const productSchema = SchemaFactory.createForClass(Product);
