@@ -37,6 +37,9 @@ input DeleteProductInput {
   productId: ID!
 }
 
+type CategoryId {
+  id: ID!
+}
 
 type Query {
     searchProduct(name: String!): Product!
@@ -48,4 +51,5 @@ type Mutation {
   createProduct(createProductInput: CreateProductInput!): Product!
   editProduct(editProductInput: EditProductInput!): Product!
   deleteProduct(deleteProductInput: DeleteProductInput!): DeletedProduct!
+  getProductsByCategory(categoryId: ID!): Product!
 }

@@ -35,4 +35,8 @@ export class ProductService {
   public async getPaginatedProducts(limit: number, page: number) {
     return await this.productRepo.paginateProducts(limit, page);
   }
+
+  public async getProductByCategory(c_id: string) {
+    return await this.productRepo.getProductByCategory(c_id);
+  }
 }

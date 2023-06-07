@@ -29,6 +29,11 @@ export class ProductResolver {
     return await this.productService.deleteProduct(deleteProductInput);
   }
 
+  @Mutation('getProductsByCategory')
+  async getProductsByCategory(@Args('categoryId') categoryId: string) {
+    return await this.productService.getProductByCategory(categoryId);
+  }
+
   @Query('searchProduct')
   async searchProduct(@Args('name') name: string) {
     return await this.productService.searchProduct(name);

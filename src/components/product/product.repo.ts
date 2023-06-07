@@ -134,6 +134,14 @@ class ProductRepo {
       totalPages: parseInt(`${productsCount / limit}`),
     };
   }
+
+  public async getProductByCategory(c_id: string) {
+    return await this.productModel.findOne(
+      { categoryId: c_id },
+      {},
+      { projection: { __v: 0 }, populate: { path: 'categoryId' } },
+    );
+  }
 }
 
 export default ProductRepo;
