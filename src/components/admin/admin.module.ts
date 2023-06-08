@@ -27,4 +27,5 @@ import userSchema, { User } from 'src/schema/user.schema';
   ],
   providers: [AdminResolver, AdminService, AdminRepo],
 })
+
 export class AdminModule {}
