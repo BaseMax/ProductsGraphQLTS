@@ -17,6 +17,7 @@ import { ProductModule } from './components/product/product.module';
       playground: true,
       typePaths: ['src/components/**/*.graphql'],
       sortSchema: true,
+      context: ({ req }) => ({ req }),
     }),
     AuthModule,
     ProductModule,
