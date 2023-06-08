@@ -1,0 +1,55 @@
+type PagincatedProducts {
+ totalItems: Int!
+ totalPages: Int!
+ currentPage: Int!
+ products: [Product]!
+}
+
+type Product {
+  id: ID!
+  name: String!
+  price: Int!
+  categoryId: Category!
+}
+
+type DeletedProduct {
+  id: ID!
+}
+
+type Category {
+  id: String!
+  name: String!
+}
+
+input CreateProductInput {
+  name: String!
+  price: Int!
+  categoryId: String!
+}
+
+input EditProductInput {
+  name: String!
+  price: Int!
+  id: ID!
+}
+
+input DeleteProductInput {
+  productId: ID!
+}
+
+type CategoryId {
+  id: ID!
+}
+
+type Query {
+    searchProduct(name: String!): Product!
+    filterProducts(categoryId: String!, minPrice: Int!, maxPrice: Int!): [Product]!
+    paginateProducts(page: Int!, limit: Int!): PagincatedProducts!
+}
+
+type Mutation {
+  createProduct(createProductInput: CreateProductInput!): Product!
+  editProduct(editProductInput: EditProductInput!): Product!
+  deleteProduct(deleteProductInput: DeleteProductInput!): DeletedProduct!
+  getProductsByCategory(categoryId: ID!): Product!
+}

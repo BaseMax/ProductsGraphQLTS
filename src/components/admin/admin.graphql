@@ -1,0 +1,20 @@
+type Product {
+  id: ID!
+  name: String!
+  price: Int!
+  categoryId: Category!
+}
+
+type Category {
+  id: String!
+  name: String!
+}
+
+type Query {
+  getInactiveProducts: [Product]!
+}
+
+type Mutation {
+  activateProduct(id: ID!): Product!
+  deactivateProduct(id: ID!): Product!
+}
