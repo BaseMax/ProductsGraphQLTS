@@ -4,6 +4,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
+import { GqlExecutionContext } from '@nestjs/graphql';
 import { JwtService } from '@nestjs/jwt';
 import { InjectModel } from '@nestjs/mongoose';
 import { compareSync } from 'bcrypt';
@@ -17,12 +18,12 @@ export class AtGuard {
     @InjectModel(User.name) private readonly userModel: Model<User>,
   ) {}
   async canActivate(context: ExecutionContext) {
-    const request = context.switchToHttp().getRequest();
-    const token = request.headers['accessToken'];
+    const ctx = GqlExecutionContext.create(context);
+    const { req } = ctx.getContext();
 
-    if (!token) {
-      throw new UnauthorizedException();
-    }
+    const token = req.header('authorization').split('=')[1] as string;
+
+    if (!token) throw new UnauthorizedException();
 
     try {
       this.jwtService.verify(token);
@@ -32,13 +33,14 @@ export class AtGuard {
       };
 
       if (!pd.isadmin) throw new UnauthorizedException();
-      // check admin email and pass
 
       const user = await this.userModel.findOne({ _id: pd.id });
+
+      if (!user) throw new UnauthorizedException();
+
       if (
-        !user ||
         user.email !== process.env.ADMIN_EMAIL ||
-        compareSync(process.env.ADMIN_PASS, user.password)
+        !compareSync(process.env.ADMIN_PASS, user.password)
       )
         throw new UnauthorizedException();
     } catch {

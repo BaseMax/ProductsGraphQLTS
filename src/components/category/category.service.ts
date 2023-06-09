@@ -15,6 +15,6 @@ export class CategoryService {
 
   public async deleteCategory(id: string) {
     await this.categoryRepo.removeCategory(id);
-    return id;
+    return { id: id };
   }
 }
