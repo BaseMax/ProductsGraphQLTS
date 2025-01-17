@@ -34,7 +34,7 @@
     "class-validator": "^0.14.0",
     "dotenv": "^16.1.4",
     "graphql": "^16.8.1",
-    "mongoose": "^8.8.3",
+    "mongoose": "^8.9.5",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0"
   },
