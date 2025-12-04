@@ -125,7 +125,7 @@ class ProductRepo {
       .limit(limit)
       .skip((page - 1) * limit);
 
-    const productsCount = await this.productModel.find().count();
+  const productsCount = await this.productModel.countDocuments();
 
     return {
       products,
