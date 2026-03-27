@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   private createJwt(payload: string | Buffer | Record<any, any>) {
-    return this.jwtService.sign(payload);
+    return this.jwtService.sign({ id: payload });
   }
 
   public async register({ email, name, password }: RegisterInput) {
