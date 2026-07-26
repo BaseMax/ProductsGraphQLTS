@@ -27,7 +27,7 @@
     "@nestjs/graphql": "^13.4.2",
     "@nestjs/jwt": "^11.0.0",
     "@nestjs/mongoose": "^11.0.3",
-    "@nestjs/platform-express": "^11.1.17",
+    "@nestjs/platform-express": "^11.1.28",
     "@types/bcrypt": "^5.0.0",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
