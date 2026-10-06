@@ -95,10 +95,10 @@ Note: Certain mutations and queries may require the user to be authenticated and
 
 ```graphql
 mutation {
-  register(input: {
+  register(registerInput: {
     name: "John Doe",
     email: "johndoe@example.com",
-    password: "password123"
+    password: "pass123"
   }) {
     id
     name
@@ -113,9 +113,9 @@ mutation {
 
 ```graphql
 mutation {
-  login(input: {
+  login(loginnput: {
     email: "johndoe@example.com",
-    password: "password123"
+    password: "pass123"
   }) {
     accessToken
     message
